@@ -35,11 +35,11 @@ API
 配置项
 ------
 
-====================    ================================================
+=====================   ================================================
 配置项                  说明
-====================    ================================================
-AUTH_CIENT_BASE_URL     api的url_prefix
-AUTH_CIENT_USERNAME     BasicAuth的username
-AUTH_CIENT_PASSWORD     BasicAuth的password
-AUTH_CIENT_VERIFY       requests的verfy配置，可以是自定义证书的路径
-====================    ================================================
+=====================   ================================================
+AUTH_CLIENT_BASE_URL     api的url_prefix
+AUTH_CLIENT_USERNAME     BasicAuth的username
+AUTH_CLIENT_PASSWORD     BasicAuth的password
+AUTH_CLIENT_VERIFY       requests的verfy配置，可以是自定义证书的路径
+=====================   ================================================
