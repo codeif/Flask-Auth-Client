@@ -1,7 +1,7 @@
-Flask插件for HttpBasicAuth client
-==================================
+HttpBaseAuth client extension for Flask.
+===========================================
 
-对requests库的包装，自动组装base_url, HttpBasicAuth
+对requests库的包装，自动组装base_url, HttpBasicAuth。
 
 
 安装
@@ -11,8 +11,8 @@ Flask插件for HttpBasicAuth client
 
     pip install Flask-Auth-Client
 
-Usage
------
+使用
+------
 
 
 First init::
@@ -22,7 +22,9 @@ First init::
     auth_client.init_app(app)
 
 API
----
+----
+
+需要注意的是 url = base_url + path，所以base_url和path需要用户自己做好处理。
 
 .. code-block::
 
@@ -34,6 +36,13 @@ API
 
 配置项
 ------
+
+可以在构造方法修改配置前缀，默认为 AUTH_CLIENT
+
+.. code-block:: py
+
+    auth_client = AuthClient(config_prefix='CUSTOM_PREFIX')
+
 
 =====================   ================================================
 配置项                  说明

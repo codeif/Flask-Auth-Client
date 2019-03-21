@@ -3,28 +3,31 @@ from requests.auth import HTTPBasicAuth
 
 
 class AuthClient(object):
-    def __init__(self, app=None, base_url=None, username=None, password=None, verify=None):
+    def __init__(self, app=None, base_url=None, username=None, password=None, verify=None, config_prefix='AUTH_CLIENT'):
         self.base_url = base_url
         self.username = username
         self.password = password
         self.verify = verify
+        self.config_prefix = config_prefix
 
         if app is not None:
             self.init_app(app)
 
     def init_app(self, app):
         if self.base_url is None:
-            self.base_url = app.config['AUTH_CLIENT_BASE_URL']
+            self.base_url = app.config[f'{self.config_prefix}_BASE_URL']
         if self.username is None:
-            self.username = app.config['AUTH_CLIENT_USERNAME']
+            self.username = app.config.get(f'{self.config_prefix}_USERNAME')
         if self.password is None:
-            self.password = app.config['AUTH_CLIENT_PASSWORD']
+            self.password = app.config.get(f'{self.config_prefix}_PASSWORD')
         if self.verify is None:
-            self.verify = app.config.get('AUTH_CLIENT_VERIFY')
+            self.verify = app.config.get(f'{self.config_prefix}_VERIFY')
 
         self.session = requests.Session()
-        self.session.auth = HTTPBasicAuth(self.username, self.password)
-        if self.verify:
+        if self.username and self.password:
+            self.session.auth = HTTPBasicAuth(self.username, self.password)
+
+        if self.verify is not None:
             self.session.verify = self.verify
 
     def request(self, method, path, **kwargs):
