@@ -10,7 +10,7 @@ def read(fname):
 
 setup(
     name='Flask-Auth-Client',
-    version='0.0.6',
+    version='0.0.8',
     description='HttpBaseAuth client extension for Flask.',
     long_description=read('README.rst'),
     author='codeif',
